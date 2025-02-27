@@ -1,1 +1,24 @@
+## **5️⃣ PwnCrypt-Threat-Hunt-Report (`README.md`)**
+### **📌 Purpose:**  
+This is the **final summary report** tying together all findings.
+
+### **📌 Content to Include in `README.md`:**
+```markdown
+# 🛡 PwnCrypt Threat Hunting Report
+
+## 🔍 Overview
+This report documents the **entire threat hunting process**, covering **file modifications, process execution, network activity, and persistence mechanisms**.
+
+## 📂 Related Reports
+- [File Analysis](https://github.com/YOUR-USERNAME/PwnCrypt-File-Analysis)
+- [Process Execution](https://github.com/YOUR-USERNAME/PwnCrypt-Process-Execution)
+- [Network Analysis](https://github.com/YOUR-USERNAME/PwnCrypt-Network-Analysis)
+- [Persistence Check](https://github.com/YOUR-USERNAME/PwnCrypt-Persistence-Check)
+
+## 🛡 Final Recommendations
+- **Restrict PowerShell execution**.
+- **Monitor and block malicious RDP connections**.
+- **Enforce security monitoring on file modifications**.
+
+---
 
