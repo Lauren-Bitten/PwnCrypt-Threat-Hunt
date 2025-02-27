@@ -1,1 +1,19 @@
+## **3️⃣ PwnCrypt-Network-Analysis (`README.md`)**
+### **📌 Purpose:**  
+This repository documents **network connections made by the infected system**, focusing on **malicious external communication**.
+
+### **📌 Content to Include in `README.md`:**
+```markdown
+# 🌐 PwnCrypt Network Analysis
+
+## 🔍 Overview
+This report identifies **malicious outbound network connections**, potentially used for **command-and-control (C2) communication** and data exfiltration.
+
+## 📌 Query Used
+To analyze outbound network connections, I ran:
+```kql
+DeviceNetworkEvents
+| where DeviceName == "win-10-25a"
+| where RemoteIP !in ("trusted company IPs")
+| order by Timestamp desc
 
