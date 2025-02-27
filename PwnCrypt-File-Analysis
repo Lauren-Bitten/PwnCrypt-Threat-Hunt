@@ -1,5 +1,25 @@
-PwnCrypt-File-Analysis/
-├── screenshots/
-│   ├── file_events.png
-├── README.md
+# 🛠 PwnCrypt File Analysis
+
+## 🔍 Overview
+This report examines **suspicious file activities** on the infected system (`win-10-25a`), including **file creations, modifications, and renaming** that align with ransomware behavior.
+
+## 📌 Query Used
+To identify suspicious file activity, I ran the following query:
+```kql
+DeviceFileEvents
+| where DeviceName == "win-10-25a"
+| order by Timestamp desc
+
+
+🔎 Findings
+Suspicious DLL (xneosecg.dll) was created in C:\Windows\Temp\, indicating potential malware execution.
+Security policy files (SecurityPolicy.inf) were modified, suggesting privilege escalation attempts.
+Employee data files were renamed and stored in C:\ProgramData\backup\, which is typical ransomware behavior.
+⚠ Implications
+The presence of xneosecg.dll suggests malware execution, possibly linked to PwnCrypt.
+Renamed and modified employee data files indicate staging for encryption or exfiltration.
+🛡 Mitigation & Recommendations
+Monitor file integrity for unauthorized modifications.
+Restrict write permissions on sensitive directories.
+Deploy endpoint detection for file encryption anomalies.
 
