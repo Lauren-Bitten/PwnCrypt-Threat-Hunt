@@ -1,1 +1,37 @@
+## **4️⃣ PwnCrypt-Persistence-Check (`README.md`)**
+### **📌 Purpose:**  
+This repository checks whether **attackers established persistence**, ensuring long-term access to the compromised machine.
 
+### **📌 Content to Include in `README.md`:**
+```markdown
+# 🔄 PwnCrypt Persistence Check
+
+## 🔍 Overview
+This report investigates **registry modifications and scheduled tasks** to determine whether the ransomware attempted persistence.
+
+## 📌 Query Used
+### **Registry Check:**
+```kql
+DeviceRegistryEvents
+| where DeviceName == "win-10-25a"
+| where RegistryKey contains "Software\\Microsoft\\Windows\\CurrentVersion\\Run"
+| order by Timestamp desc
+
+Scheduled Task Check:
+
+DeviceProcessEvents
+| where DeviceName == "win-10-25a"
+| where ProcessCommandLine contains "schtasks"
+| order by Timestamp desc
+
+
+🔎 Findings
+No registry modifications were found, meaning the attacker did not attempt persistence via startup keys.
+No scheduled tasks were detected, indicating this was a one-time attack rather than an ongoing compromise.
+⚠ Implications
+The attack focused solely on encryption and exfiltration.
+No long-term persistence mechanisms were installed.
+🛡 Mitigation & Recommendations
+Regularly audit registry changes for unauthorized modifications.
+Monitor scheduled tasks to detect stealthy persistence techniques.
+Use endpoint security tools to prevent unauthorized task scheduling.
