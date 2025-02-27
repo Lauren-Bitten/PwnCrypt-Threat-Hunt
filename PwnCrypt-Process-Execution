@@ -1,1 +1,35 @@
 
+---
+
+## **2️⃣ PwnCrypt-Process-Execution (`README.md`)**
+### **📌 Purpose:**  
+This repository analyzes **PowerShell execution** to determine how the ransomware executed.
+
+### **📌 Content to Include in `README.md`:**
+```markdown
+# 🔄 PwnCrypt Process Execution Analysis
+
+## 🔍 Overview
+This report investigates **process executions** linked to PwnCrypt ransomware, particularly **PowerShell activity**, which was responsible for file staging and exfiltration.
+
+## 📌 Query Used
+To identify suspicious PowerShell execution, I ran:
+```kql
+DeviceProcessEvents
+| where DeviceName == "win-10-25a"
+| where ProcessCommandLine contains "powershell"
+| order by Timestamp desc
+
+
+🔎 Findings
+PowerShell executed exfiltratedata.ps1, which performed:
+Creation of employee data files.
+Compression of data using 7zip.
+Data exfiltration to an external cloud storage location.
+⚠ Implications
+Attackers often use PowerShell scripts to execute payloads and bypass security tools.
+Unrestricted PowerShell usage allows attackers to automate exfiltration and encryption.
+🛡 Mitigation & Recommendations
+Enforce PowerShell Constrained Language Mode to prevent script execution.
+Monitor PowerShell logs for unusual execution patterns.
+Block execution of Invoke-WebRequest from unauthorized scripts.
